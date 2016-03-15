@@ -1,0 +1,89 @@
+Name: Vivien Hau, CS 270, Assignment 6
+Description: Building the views
+
+== CS 270 Assignment 6
+
+In this assignment, we'll now make use of the model associations and controllers
+to start incorporating some business logic into the app.  We'll be dealing with 
+not only the logic to code up in the controllers and models, but we'll also need
+to start building the views to be rendered in this phase.
+
+<b>Step 1 - Seed the Database</b>
+
+It would be nice to have some actual data to play with and see when we fire up the
+Rails development server, and in order to do that we can seed the database with some
+initial data.
+
+This script lives in the db directory in seeds.rb.  In the seeds.rb file, we can
+create some initial data to be loaded into the database as well as create some
+sample associations.  By having you go through and populate the seeds file with some
+initial data, this will also start getting you used to using the associations we
+previously built.
+
+You must create two events, two locations, and two users.  You can create these by
+utilizing the create method that comes with every model.  For example, to create
+an event:
+
+<tt>Event.create(name: 'Event 1', description: 'Event 1', start_date: Date.today, end_date: Date.today + 7)</tt>
+
+Creates Events 1 that starts today and ends in 1 week.
+
+After creating the above items, you must also associate them together in the following way:
+
+* User 1 is the owner of Event 1 and Locations 1 and 2
+* Locations 1 and 2 belong to Event 1
+* User 2 is a participant of Event 1 and has already visited Location 1
+
+After filling in the seeds.rb file, you can actually seed the database by running:
+
+<tt>rake db:seed</tt>
+
+<b>Step 2 - Create the Views</b>
+
+Every route is mapped to a specific controller/action pair, and every controller/action
+pair must have either an associated view or redirect to a route that does.  Thus, we
+need to create views for most controller/action pairs.
+
+Views live in the app/views directory, and they are organized by subfolders according
+to controllers.  For instance, the views for the events controller would live in 
+the app/views/events directory.  Start by creating a directory for each controller
+that we built in the last phase (events, locations, users).
+
+Inside each view folder, there must be a corresponding .html.erb file for each action 
+in that controller.  For example, for the show_all_events in the events controller,
+there should be a show_all_events.html.erb file in app/views/events.  
+
+Create a view file for each controller/action pair that is mapped to an HTTP GET request.
+
+<b>Step 3 - Fill in the Views</b>
+
+Now that you have the view files stubbed out, it's time to start making the models,
+controllers, and views work together to display information.  For now, we'll keep our views
+basic.
+
+Let's start with events.  First, we want to display a listing of all events.  In order
+to do this, we need to go to the controller/action pair that is mapped to the show_all_events_path:
+in other words, we need to fill in the show_all_events method in the events controller.
+
+We can easily grab a listing of all events by taking advantage of the built-in model methods
+that Rails provides for us.  For the show_all_events action, we simply need to create
+an instance variable, @events, and assign the list of all events to it, like this:
+
+<tt>@events = Event.all</tt>
+
+Now, the @events variable is available for use in the corresponding view, show_all_events.html.erb,
+and we simply need to loop over the list of all events to display the event information
+for each event in some sort of html table.
+
+Likewise, to show a single event, we can use the model's built-in find method to grab
+a particular event by id (passed via the params hash):
+
+<tt>@event = Event.find(params[:id])</tt>
+
+And again, that variable becomes available for use in the corresponding show_event.html.erb file.
+
+Fill in the view file for each GET request method as appropriate so that the correct information
+is displayed.  You can view your handiwork by firing up the Rails development server
+and visiting the various addresses you incorporated in the routes.rb file.
+
+In the next phase, we'll start building the check-in pipeline...

@@ -1,0 +1,34 @@
+<h2><%= @user.first_name %></h2>
+<p><%= @user.last_name %></p>
+<p><%= @user.email %></p>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+    </tr>
+    
+    <% @user.participating_events.each do |loc| %>
+        <tr>
+            <td><%= event.name %></td>
+            <td><%= event.description %></td>
+        </tr>
+        
+        <% end %>
+</table>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    
+    <% @user.visited_locations.each do |u| %>
+        <tr>
+            <td><%= e.event %></td>
+            <td><%= e.description %></td>
+        </tr>
+        
+        <% end %>
+</table>

@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Coordinates</th>
+    </tr>
+    
+    <% @locations.each do |l| %>
+        <td><%= l.name %></td>
+        <td><%= l.description %></td>
+        <td><%= l.coordinates %></td>
+        
+        <% end %>
+</table>

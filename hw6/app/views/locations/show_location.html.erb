@@ -1,0 +1,17 @@
+<h2><%= @location.name %></h2>
+<p><%= @location.description %></p>
+
+<table>
+    <tr>
+        <th>Location</th>
+        <th>Description</th>
+    </tr>
+    
+    <% @location.each do |loc| %>
+        <tr>
+            <td><%= loc.name %></td>
+            <td><%= loc.description %></td>
+        </tr>
+        
+        <% end %>
+</table>
